@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "0.0.1",
+  "description": "Control smarthouse",
+  "main": "index.js",
+  "engines": {
+    "node": ">=4.3.2"
+  },
+  "dependencies": {
+    "debug": "^2.2.0",
+    "ip": "^1.1.3"
+  },
+  "devDependencies": {
+    "simple-plist": "0.0.4"
+  },
+
+  "author": "Bozhenko Ivan  <ivanbozhenko@gmail.com> ",
+  "license": "Apache-2.0"
+}
