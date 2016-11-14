@@ -1,0 +1,42 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "homebridge-mimismart",
+        "scope": null,
+        "escapedName": "homebridge-mimismart",
+        "name": "homebridge-mimismart",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/katod/Documents/HomeKit/homebridge"
+    ]
+  ],
+
+  "dependencies": {
+    "colorsys": "^1.0.9"
+  },
+  "description": "Mimismart homebridge: https://github.com/nfarina/homebridge",
+
+  "engines": {
+    "homebridge": ">=0.2.0",
+    "node": ">=0.12.0"
+  },
+
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "ivanbozhenko",
+      "email": "ivanbozhenko@gmail.com"
+    }
+  ],
+  "name": "homebridge-mimismart",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {},
+  "version": "0.0.1"
+}
