@@ -11,20 +11,74 @@
         "accessories": [
         {
             "accessory": "Mimi-Lamp",
-            "name": "Lamp1"
-
+            "name": "Комната1 Lamp1",
+            "id":"401",
+            "subid":"1"
         },
                       
         {
             "accessory": "Mimi-Lamp",
-            "name": "Lamp2"
+            "name": "Комната1 Lamp2",
+            "id":"401",
+            "subid":"2"
 
         },
                 
         {
             "accessory": "Mimi-Lamp",
-            "name": "Lamp3"
+            "name": "Комната2 Lamp1",
+            "id":"401",
+            "subid":"3"
+
+        },
+                
+        {
+            "accessory": "Mimi-Lamp",
+            "name": "Комната2 Lamp2",
+            "id":"401",
+            "subid":"4"
+
+        },
+
+        {
+            "accessory": "Mimi-Lamp",
+            "name": "Комната3 Lamp1",
+            "id":"401",
+            "subid":"5"
+
+        },
+
+        {
+            "accessory": "Mimi-Lamp",
+            "name": "Комната3 Lamp2",
+            "id":"401",
+            "subid":"6"
+
+        },
+
+        {
+            "accessory": "Mimi-Lamp",
+            "name": "Кухня Lamp",
+            "id":"401",
+            "subid":"7"
+
+        },
+
+         {
+            "accessory": "Mimi-Lamp",
+            "name": "Холл Lamp1",
+            "id":"158",
+            "subid":"8"
+
+        },
+
+        {
+            "accessory": "Mimi-Lamp",
+            "name": "Холл Lamp2",
+            "id":"158",
+            "subid":"6"
 
         }
-                       ]
+
+        ]
 }
