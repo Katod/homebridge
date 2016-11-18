@@ -15,7 +15,7 @@
   ],
 
   "dependencies": {
-    "colorsys": "^1.0.9"
+    "c-struct": ">=0.0.1"
   },
   "description": "Mimismart homebridge: https://github.com/nfarina/homebridge",
 

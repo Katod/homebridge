@@ -35,7 +35,7 @@ var buf = struct.packSync('rq', {
 
 var client = dgram.createSocket('udp4');
 
-client.bind(55555);
+//client.bind(55555);
 console.log(buf);
 //console.log(unbuf);
 

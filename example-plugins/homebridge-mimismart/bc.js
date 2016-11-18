@@ -1,5 +1,4 @@
 "use strict";
-var sys = require('util');
 var socket = require('net').Socket();
 var struct = require('c-struct');
 var dgram = require('dgram');
@@ -22,16 +21,9 @@ var Server = function(host,port) {
     this.host = host;
     this.port = port;
     this.client = dgram.createSocket('udp4');
-    //this.client.bind();
-
-    this.client.on('listening', function(){
-        this.setBroadcast(true);
-    });
-
+    
+   // this.client.bind(port);
 };
-
-
-
 
 Server.prototype.setStatus = function (id,subid,status) {
  
@@ -50,8 +42,9 @@ Server.prototype.setStatus = function (id,subid,status) {
      var totalLength = buf.length + status.length;
      var bufA = Buffer.concat([buf, status], totalLength);
 
-       console.log(bufA);
+     console.log(bufA);
      
+
        this.client.send(bufA, 0, bufA.length, this.port, this.host, function(err, bytes) {
         if (err) throw err;
       });
