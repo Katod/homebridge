@@ -2,7 +2,7 @@
 var Service, Characteristic;
 var Server = require('./Server.js');
 
-var MimiSmartServer =  new Server('192.168.1.124' ,55555);
+var MimiSmartServer =  new Server('192.168.1.255' ,55555);
 
 
 module.exports = function( homebridge ) {
@@ -37,12 +37,14 @@ LampAccessoryMimi.prototype.getServices = function() {
   lightbulbService
     .getCharacteristic( Characteristic.On )
     .on( 'get', function( callback ) {
-      callback( null, lamp.power );
+      callback( null, 1 );
+      lamp.log( "Get Status" +lamp.id+":"+lamp.subid);
+
     } )
     .on( 'set', function( value, callback ) {
       lamp.power = value;
       
-      MimiSmartServer.setStatus(lamp.id,lamp.subid,value);
+      MimiSmartServer.setStatus(lamp.id,lamp.subid,Buffer([value]));
       lamp.log( "power to " + value );
       callback();
     } );

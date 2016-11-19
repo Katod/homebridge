@@ -1,0 +1,98 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "homebridge-openhab",
+        "scope": null,
+        "escapedName": "homebridge-openhab",
+        "name": "homebridge-openhab",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/katod/Documents/HomeKit/homebridge"
+    ]
+  ],
+  "_from": "homebridge-openhab@latest",
+  "_id": "homebridge-openhab@0.1.31",
+  "_inCache": true,
+  "_location": "/homebridge-openhab",
+  "_nodeVersion": "5.1.0",
+  "_npmOperationalInternal": {
+    "host": "packages-5-east.internal.npmjs.com",
+    "tmp": "tmp/homebridge-openhab-0.1.31.tgz_1455318030020_0.5132927305530757"
+  },
+  "_npmUser": {
+    "name": "tommaso.marchionni",
+    "email": "tommaso.marchionni@gmail.com"
+  },
+  "_npmVersion": "3.5.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "homebridge-openhab",
+    "scope": null,
+    "escapedName": "homebridge-openhab",
+    "name": "homebridge-openhab",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/homebridge-openhab/-/homebridge-openhab-0.1.31.tgz",
+  "_shasum": "8f2f3027d75a536d5402966d694eac172a21e01f",
+  "_shrinkwrap": null,
+  "_spec": "homebridge-openhab",
+  "_where": "/home/katod/Documents/HomeKit/homebridge",
+  "author": {
+    "name": "tommasomarchionni"
+  },
+  "bugs": {
+    "url": "https://github.com/tommasomarchionni/homebridge-openHAB/issues"
+  },
+  "dependencies": {
+    "request": "^2.65.0",
+    "ws": "^0.8.1"
+  },
+  "description": "Homebridge plugin for openHAB",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "8f2f3027d75a536d5402966d694eac172a21e01f",
+    "tarball": "https://registry.npmjs.org/homebridge-openhab/-/homebridge-openhab-0.1.31.tgz"
+  },
+  "engines": {
+    "homebridge": ">=0.2.0",
+    "node": ">4.0.0"
+  },
+  "gitHead": "04e3f31419108f8adf56a3cee8470597fbf0af3f",
+  "homepage": "https://github.com/tommasomarchionni/homebridge-openHAB#readme",
+  "keywords": [
+    "homebridge-plugin",
+    "openHAB",
+    "homekit",
+    "z-wave",
+    "Siri"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "tommaso.marchionni",
+      "email": "tommaso.marchionni@gmail.com"
+    }
+  ],
+  "name": "homebridge-openhab",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tommasomarchionni/homebridge-openHAB.git"
+  },
+  "scripts": {
+    "start": "echo \"Error: configure and run homebridge to start\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.31"
+}

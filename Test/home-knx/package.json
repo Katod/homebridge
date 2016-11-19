@@ -1,0 +1,116 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "homebridge-knx",
+        "scope": null,
+        "escapedName": "homebridge-knx",
+        "name": "homebridge-knx",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/katod/Documents/HomeKit/homebridge"
+    ]
+  ],
+  "_from": "homebridge-knx@latest",
+  "_id": "homebridge-knx@0.3.2",
+  "_inCache": true,
+  "_location": "/homebridge-knx",
+  "_nodeVersion": "0.12.2",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/homebridge-knx-0.3.2.tgz_1479156762629_0.06100485334172845"
+  },
+  "_npmUser": {
+    "name": "snowdd1",
+    "email": "snowdd1.theelk@xoxy.net"
+  },
+  "_npmVersion": "2.7.4",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "homebridge-knx",
+    "scope": null,
+    "escapedName": "homebridge-knx",
+    "name": "homebridge-knx",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/homebridge-knx/-/homebridge-knx-0.3.2.tgz",
+  "_shasum": "ce323255a7112cc790e082930dc869a89b4b2921",
+  "_shrinkwrap": null,
+  "_spec": "homebridge-knx",
+  "_where": "/home/katod/Documents/HomeKit/homebridge",
+  "author": {
+    "name": "Raoul",
+    "url": "https://github.com/snowdd1"
+  },
+  "bugs": {
+    "url": "https://github.com/snowdd1/homebridge-knx/issues"
+  },
+  "contributors": [
+    {
+      "name": "EIBHomeControl",
+      "url": "https://github.com/EIBHomeControl"
+    },
+    {
+      "name": "Michael",
+      "url": "https://github.com/misc2000"
+    },
+    {
+      "name": "bytefactory73",
+      "url": "https://github.com/bytefactory73"
+    }
+  ],
+  "dependencies": {
+    "debug": "^2.3.0",
+    "eibd": "^0.3.5"
+  },
+  "description": "homebridge shim for KNX home automation.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "ce323255a7112cc790e082930dc869a89b4b2921",
+    "tarball": "https://registry.npmjs.org/homebridge-knx/-/homebridge-knx-0.3.2.tgz"
+  },
+  "engines": {
+    "homebridge": ">=0.4.9",
+    "node": ">4.0.0"
+  },
+  "gitHead": "af6f871778d83b01ba84ed01e8ec31ea3eb7589f",
+  "homepage": "https://github.com/snowdd1/homebridge-knx",
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "KNX",
+    "knx",
+    "knxd",
+    "eibd",
+    "EIB",
+    "Siri"
+  ],
+  "license": "GPL-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "snowdd1",
+      "email": "snowdd1.theelk@xoxy.net"
+    }
+  ],
+  "name": "homebridge-knx",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowdd1/homebridge-knx.git"
+  },
+  "scripts": {
+    "start": "echo \"Error: configure and run homebridge to start\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.3.2"
+}

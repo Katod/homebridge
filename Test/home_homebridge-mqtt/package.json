@@ -1,0 +1,95 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "homebridge-mqtt",
+        "scope": null,
+        "escapedName": "homebridge-mqtt",
+        "name": "homebridge-mqtt",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/katod/Documents/HomeKit/homebridge"
+    ]
+  ],
+  "_from": "homebridge-mqtt@latest",
+  "_id": "homebridge-mqtt@0.2.2",
+  "_inCache": true,
+  "_location": "/homebridge-mqtt",
+  "_nodeVersion": "6.1.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/homebridge-mqtt-0.2.2.tgz_1478683582907_0.09574684523977339"
+  },
+  "_npmUser": {
+    "name": "cflurin",
+    "email": "flurin.npm@gmail.com"
+  },
+  "_npmVersion": "3.8.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "homebridge-mqtt",
+    "scope": null,
+    "escapedName": "homebridge-mqtt",
+    "name": "homebridge-mqtt",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/homebridge-mqtt/-/homebridge-mqtt-0.2.2.tgz",
+  "_shasum": "ed8a5d52c2cc0b1e26e5fbdbdd71341f745ee4ba",
+  "_shrinkwrap": null,
+  "_spec": "homebridge-mqtt",
+  "_where": "/home/katod/Documents/HomeKit/homebridge",
+  "author": {
+    "name": "flurin"
+  },
+  "bugs": {
+    "url": "http://github.com/cflurin/homebridge-mqtt/issues"
+  },
+  "dependencies": {
+    "mqtt": "^1.13.0",
+    "request": "^2.65.0"
+  },
+  "description": "MQTT Plugin for Homebridge",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "ed8a5d52c2cc0b1e26e5fbdbdd71341f745ee4ba",
+    "tarball": "https://registry.npmjs.org/homebridge-mqtt/-/homebridge-mqtt-0.2.2.tgz"
+  },
+  "engines": {
+    "homebridge": ">=0.4.6",
+    "node": ">=4.3.2"
+  },
+  "gitHead": "41ca1d97ab7fa00aa80859a5edaf16aca362a4b5",
+  "homepage": "https://github.com/cflurin/homebridge-mqtt#readme",
+  "keywords": [
+    "homebridge",
+    "homebridge-plugin",
+    "homekit",
+    "siri",
+    "mqtt",
+    "node-RED"
+  ],
+  "license": "ISC",
+  "maintainers": [
+    {
+      "name": "cflurin",
+      "email": "flurin.npm@gmail.com"
+    }
+  ],
+  "name": "homebridge-mqtt",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cflurin/homebridge-mqtt.git"
+  },
+  "scripts": {},
+  "version": "0.2.2"
+}

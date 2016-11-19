@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "homebridge-fake-rgb",
+        "scope": null,
+        "escapedName": "homebridge-fake-rgb",
+        "name": "homebridge-fake-rgb",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/katod/Documents/HomeKit/homebridge"
+    ]
+  ],
+  "_from": "homebridge-fake-rgb@latest",
+  "_id": "homebridge-fake-rgb@0.0.3",
+  "_inCache": true,
+  "_location": "/homebridge-fake-rgb",
+  "_nodeVersion": "6.3.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/homebridge-fake-rgb-0.0.3.tgz_1469377092344_0.7467917331960052"
+  },
+  "_npmUser": {
+    "name": "edjopato",
+    "email": "edjopato@gmail.com"
+  },
+  "_npmVersion": "3.10.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "homebridge-fake-rgb",
+    "scope": null,
+    "escapedName": "homebridge-fake-rgb",
+    "name": "homebridge-fake-rgb",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/homebridge-fake-rgb/-/homebridge-fake-rgb-0.0.3.tgz",
+  "_shasum": "7371121e6101b1c90cbccb27946641653fdf987d",
+  "_shrinkwrap": null,
+  "_spec": "homebridge-fake-rgb",
+  "_where": "/home/katod/Documents/HomeKit/homebridge",
+  "author": {
+    "name": "Edgar Toll"
+  },
+  "bugs": {
+    "url": "https://github.com/edjopato/homebridge-fake-rgb/issues"
+  },
+  "dependencies": {
+    "colorsys": "^1.0.9"
+  },
+  "description": "Fake RGB Bulb plugin for homebridge: https://github.com/nfarina/homebridge",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "7371121e6101b1c90cbccb27946641653fdf987d",
+    "tarball": "https://registry.npmjs.org/homebridge-fake-rgb/-/homebridge-fake-rgb-0.0.3.tgz"
+  },
+  "engines": {
+    "homebridge": ">=0.2.0",
+    "node": ">=0.12.0"
+  },
+  "gitHead": "0023def4ec420915f1896860b05c322ec41e0d8d",
+  "homepage": "https://github.com/edjopato/homebridge-fake-rgb#readme",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "edjopato",
+      "email": "edjopato@gmail.com"
+    }
+  ],
+  "name": "homebridge-fake-rgb",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/edjopato/homebridge-fake-rgb.git"
+  },
+  "scripts": {},
+  "version": "0.0.3"
+}

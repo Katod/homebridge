@@ -21,12 +21,26 @@ struct.register('rq', Request);
 var Server = function(host,port) {
     this.host = host;
     this.port = port;
+    this.StatusStorage = []; 
     this.client = dgram.createSocket('udp4');
-    //this.client.bind();
+    this.client.bind(port);
+
 
     this.client.on('listening', function(){
         this.setBroadcast(true);
     });
+
+     this.client.on('message', function (message, remote) {
+         var buffer = struct.unpackSync('rq', message);//packer.unpack("!HHBBBBHB", message, 0);
+          
+
+        if(buffer["PD"] == 15 && buffer["SenderID"] == 401)
+          {
+             this.StatusStorage.push(10);
+            console.log( this.StatusStorage);
+          }
+      // console.log(remote.address + ':' + remote.port +' - ' + buffer);
+     });
 
 };
 
@@ -34,7 +48,6 @@ var Server = function(host,port) {
 
 
 Server.prototype.setStatus = function (id,subid,status) {
- 
       var buf = struct.packSync('rq', {
       SenderID:2022,
       DestID:id,
@@ -44,15 +57,10 @@ Server.prototype.setStatus = function (id,subid,status) {
       DestSubID:subid,
       Length:status.length
     });
-      console.log(status.length);
-      console.log(status);
 
-     var totalLength = buf.length + status.length;
-     var bufA = Buffer.concat([buf, status], totalLength);
-
-       console.log(bufA);
+     buf = Buffer.concat([buf, status], (buf.length + status.length));
      
-       this.client.send(bufA, 0, bufA.length, this.port, this.host, function(err, bytes) {
+       this.client.send(buf, 0, buf.length, this.port, this.host, function(err, bytes) {
         if (err) throw err;
       });
 

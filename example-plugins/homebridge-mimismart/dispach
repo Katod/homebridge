@@ -1,0 +1,178 @@
+#!/usr/bin/php
+<?php
+
+$BIND_HOST = "192.168.1.10";
+$BIND_HOST = "127.0.0.1";
+$BIND_PORT = 4444;
+$SH_ID = 1101;
+$SH_BROADCAST = 2047;
+//$IP_BROADCAST = "192.168.1.255";
+$IP_BROADCAST = "255.255.255.255";
+$RECV_TIMEOUT = 5;
+
+$MYSQL_HOST = "localhost";
+$MYSQL_LOGIN = "root";
+$MYSQL_PASS = "";
+$MYSQL_DB = "dispatch_sec11";
+
+
+$socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+echo "Start dispatching...\n";
+if (!is_resource($socket)) {
+    die("Error creating socket: " . socket_strerror(socket_last_error()));
+}
+    
+if (!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1)) {
+    die("Set sock opt error: " . socket_strerror(socket_last_error()));
+}
+
+if (!socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1)) {
+    die("Set sock opt error: " . socket_strerror(socket_last_error()));
+}
+
+if (!socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>$RECV_TIMEOUT,"usec"=>0))) {
+    die("Set sock opt error: " . socket_strerror(socket_last_error()));
+}
+
+if (!socket_bind($socket, $BIND_HOST, $BIND_PORT)) {
+    die("Bind error: ".  socket_strerror(socket_last_error()));
+}
+
+$m = mysql_connect($MYSQL_HOST, $MYSQL_LOGIN, $MYSQL_PASS);
+if (!$m || !mysql_select_db($MYSQL_DB)) die("Mysql connect");
+
+function handle_pack ($pkt, $peer) {
+
+    if(strlen($pkt)<10) return false;
+    $hdr = unpack("SSender/SDest/CPD/CNU1/CSenderSubID/CDestSubID/SLength", $pkt);
+/*    if ($hdr['PD']==3) {
+        echo "$peer  ${hdr['Sender']}:${hdr['SenderSubID']} -> ${hdr['Dest']}:${hdr['DestSubID']} ";
+        echo "${hdr['PD']} Len:${hdr['Length']} Data: " . bin2hex(substr($pkt,10)) . "\n";
+    }*/
+    if (($hdr['PD'] == 5)&&($hdr['Dest'] == 1000)) {
+	echo "parsing packet ...\n";
+	//$v = unpack("L4energy/lpower/Lvoltage/vfreq/st_electro/ve_err/VkCal/Vh_vol/st_flow/st_ret/vh_err/V4water", substr($pkt,10));
+	$v=unpack("L4energy/lpower/Lvoltage/scos_fi/samper/st_electro/vfreq/Lut_of_time/Lut_of_date/Lunix_time/VkCal/Vh_vol/st_flow/st_ret/V4water/vh_err/vh_err", substr($pkt,10));
+	//print_r($v);
+	foreach ($v as &$value) {
+	 // echo $value."\n";
+	  if (($value==-1) || ($value==65535) || ($value==4294967295)) {
+	    $value=NULL;
+	   // echo "value 0xffff NULLed\n";
+	  }
+	 // echo $value."\n";
+	}
+	if (!is_null( $v['energy1'])) $v['energy1']/=1000.0;
+	if (!is_null( $v['energy2'])) $v['energy2']/=1000.0;
+	if (!is_null( $v['energy3'])) $v['energy3']/=1000.0;
+	if (!is_null( $v['energy4'])) $v['energy4']/=1000.0;
+	
+	if (!is_null($v['voltage'])) $v['voltage'] = round($v['voltage'] / 1000.0, 1);
+	if (!is_null($v['freq'])) $v['freq']/= 10.0;
+	if (!is_null( $v['t_electro'])) $v['t_electro']/= 10.0;
+	if (!is_null($v['kCal'])) $v['kCal']/=1000.0;
+	
+	if (!is_null($v['h_vol'])) $v['h_vol']/=1000;
+	if (!is_null($v['t_flow'])) $v['t_flow'] = round($v['t_flow'] / 1000.0, 1);
+	if (!is_null($v['t_ret'])) $v['t_ret'] = round($v['t_ret'] / 1000.0, 1);
+
+	if (!is_null($v['water1'])) $v['water1']/=1000.0;
+	if (!is_null($v['water2'])) $v['water2']/=1000.0;
+	if (!is_null($v['water3'])) $v['water3']/=1000.0;
+	if (!is_null($v['water4'])) $v['water4']/=1000.0;
+
+	$sql = "INSERT INTO meter_readings_for_minute SET flat_id=(SELECT flat_id FROM flats WHERE dispatch_address='".$hdr['Sender'] . ':' .$hdr['SenderSubID']."' LIMIT 1)".
+		", cold_water=".(is_null($v['water1'])?'NULL':$v['water1']).", hot_water=".(is_null($v['water2'])?'NULL':$v['water2']).
+		", heating=".(is_null($v['kCal'])?'NULL':$v['kCal']).", temperature_in=".(is_null($v['t_flow'])?'NULL':$v['t_flow']).", temperature_out=".(is_null($v['t_ret'])?'NULL':$v['t_ret']).
+		", energy=".(is_null($v['energy1'])?'NULL':$v['energy1']).", voltage=".(is_null($v['voltage'])?'NULL':$v['voltage']).", power=".(is_null($v['power'])?'NULL':$v['power']).", added=now()";
+	echo "$sql"."\n";	
+	if (!mysql_query($sql)) {
+	    echo "MYSQL ERROR: " . mysql_error() . "\nSQL: " . $sql . "\n";
+	}
+	//echo $sql . "\n";
+	//print_r($v);
+    } else if($hdr['PD'] == 7) {
+	//echo "Data: " . substr($pkt,10) . "\n";
+    }
+    if ($hdr['PD'] == 15) {
+	//echo "$peer  ${hdr['Sender']}:${hdr['SenderSubID']} -> ${hdr['Dest']}:${hdr['DestSubID']} ";
+	//echo "${hdr['PD']} Len:${hdr['Length']} Data: " . bin2hex(substr($pkt,10)) . "\n";
+	$data = substr($pkt,10);
+	$ofs = 0;
+	while ($ofs<strlen($data)) {
+	    $sid = ord($data[$ofs]);
+	    $size = ord($data[$ofs+1]);
+	    $value = substr($data, $ofs+2, $size);
+	    $ofs+= 2 + $size;
+	    //echo "Subid = " . $sid . ", size = " . $size . ", Data: " . bin2hex($value) . "\n";
+	    if (($sid<=10)&&($size==6)) {		
+		$heating = unpack("Cstatus/starget/scurrent/Cauto_mode", $value);
+		$heating['target'] = round($heating['target']/256.0, 2);
+		$heating['current'] = round($heating['current']/256.0, 2);
+		
+		//print_r($heating);
+		$sql = "INSERT INTO executor_for_minute SET flat_id=(SELECT flat_id FROM flats WHERE hitting_id='".$hdr['Sender'] . ':' .$sid."' LIMIT 1)".
+		", executor2=". ((int)$heating['status']*100 ).", added=now()";
+		//echo $sql . "\n";
+		if (!mysql_query($sql)) {
+		    echo "MYSQL ERROR: " . mysql_error() . "\nSQL: " . $sql . "\n";
+		}
+		$sql = "INSERT INTO sensor_for_minute SET flat_id=(SELECT flat_id FROM flats WHERE hitting_id='".$hdr['Sender'] . ':' .$sid."' LIMIT 1)".
+		", temp1=".$heating['current'].", temp2=".$heating['target'].", added=now()";
+		//echo $sql . "\n";
+		if (!mysql_query($sql)) {
+		    //echo "MYSQL ERROR: " . mysql_error() . "\nSQL: " . $sql . "\n";
+		}
+	    }
+	    if (($sid==97)||($sid==98)) {
+		$tmp = unpack("stemp", $value);
+		$tmp = $tmp['temp']/256.0;
+		//echo "Temp = " . round($tmp,2) . "\n";
+		
+	    }
+	}
+    }
+
+}
+
+while (true) {
+    $ret = @socket_recvfrom($socket, $pkt, 2048, 0, $ip, $port);
+    if($ret !== false) {
+	if (!mysql_ping()) {
+	    die("Lost connection, restart\n");
+	}
+	handle_pack($pkt, $ip.":".$port);
+    }
+//        	        $data = "test";
+//        	            socket_sendto($socket, $data, strlen($data), 0, $IP_BROADCAST, $BIND_PORT); 
+}
+        	            
+/*
+
+
+function send_dummy_pack($socket) {
+    global $SH_ID, $SH_BROADCAST, $IP_BROADCAST;
+    
+    $data = pack("SSCCCCS", $SH_ID, $SH_BROADCAST, 7, 0, 1, 1, 0);
+    stream_socket_sendto($socket, $data, 0, $IP_BROADCAST);
+}
+
+$socket = stream_socket_server($HOST, $errno, $errstr, STREAM_SERVER_BIND);
+if (!$socket) die("$errstr ($errno)");
+print_r($socket);
+
+//socket(SOCKET, PF_INET, SOCK_DGRAM, $proto) or die "socket: $!";
+//setsockopt($socket, SOL_SOCKET, SO_BROADCAST, 1);// or die "sockopt";
+socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
+
+send_dummy_pack($socket);
+
+do {
+    $pkt = stream_socket_recvfrom($socket, 1000, 0, $peer);
+    $hdr = unpack("SSender/SDest/CPD/CNU1/CSenderSubID/CDestSubID/SLength", $pkt);
+    echo "$peer  ${hdr['Sender']}:${hdr['SenderSubID']} -> ${hdr['Dest']}:${hdr['DestSubID']} ";
+    echo "${hdr['PD']} Len:${hdr['Length']} Data: " . bin2hex(substr($pkt,10)) . "\n";
+} while ($pkt !== false);
+*/
+
+?>
